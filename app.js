@@ -3,6 +3,8 @@ const app = express();
 
 app.get("/", (req, res) => {
   const isMobileHeader = req.header("isMobile");
+  console.log("*****" + isMobileHeader + "*******");
+  console.log("***** device header" + req.header("device"));
   if (
     isMobileHeader &&
     (isMobileHeader === true || isMobileHeader === "true")
