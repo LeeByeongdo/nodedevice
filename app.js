@@ -3,15 +3,28 @@ const app = express();
 
 app.get("/", (req, res) => {
   const isMobileHeader = req.header("isMobile");
-  console.log("*****" + isMobileHeader + "*******");
-  console.log("***** device header" + req.header("device"));
+  const isEmployeeHeader = req.header("isEmployee");
   if (
     isMobileHeader &&
     (isMobileHeader === true || isMobileHeader === "true")
   ) {
-    res.sendFile("/img/mobile.jpg", { root: __dirname });
+    if (
+      isEmployeeHeader &&
+      (isEmployeeHeader === true || isEmployeeHeader === "true")
+    ) {
+      res.sendFile("/img/employee_mobile.jpg", { root: __dirname });
+    } else {
+      res.sendFile("/img/mobile.jpg", { root: __dirname });
+    }
   } else {
-    res.sendFile("/img/desktop.jpg", { root: __dirname });
+    if (
+      isEmployeeHeader &&
+      (isEmployeeHeader === true || isEmployeeHeader === "true")
+    ) {
+      res.sendFile("/img/employee_desktop.jpg", { root: __dirname });
+    } else {
+      res.sendFile("/img/desktop.jpg", { root: __dirname });
+    }
   }
 });
 
